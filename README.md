@@ -87,13 +87,13 @@ On Ubuntu, you should see a popup from NetworkManager saying there's a new Wired
                 - Netmask: 24 (you can leave Gateway blank)
             - Routes... > check "use this connection only for resources on its network" (this allows you to preserve internet connection when the Loomo connects via ethernet)
     - After creating a static IP, add these two lines to your `~/.bashrc` (assuming your PC is the ROS master)
-        - `export ROS_MASTER_URI=http://192.168.42.134:11311/
-        - `export ROS_IP=192.168.42.134`
+        - `export ROS_MASTER_URI=http://localhost:11311/` (`ROS_MASTER_URI` should refer to the ROS master device, which in this case, is this PC)
+        - `export ROS_IP=192.168.42.134` (Should always refer to the device `ROS_IP` is being set on)
     - Run `source ~/.bashrc` to see changes. You can check that you have the right `ROS_MASTER_URI`, etc. with `echo $ROS_MASTER_URI`
 
 At this point, the two devices are on a common network, and you should be able to ping one another.
 
-6. Start ROS master on Ubuntu PC (i.e. `$ roscore`) (use `ROS_MASTER_URI=http://192.168.42.34:11311/`)
+6. Start ROS master on Ubuntu PC (i.e. `$ roscore`) (make sure `ROS_MASTER_URI` and `ROS IP` are properly configured.)
 
 7. Start the Loomo ROS app on the Loomo's touch screen interface
     - If you get the error "insufficient permissions for device with ADB" (and when run command `adb devices`, next to device says "no permissions"), run `adb kill-server ; sudo adb start-server`
@@ -111,8 +111,3 @@ If all of that worked, you're able to send/receive data from your Loomo using RO
 * To quit an application, tab the side of the head of the Loomo.
 * If Ubuntu PC does not detect Loomo when plugged in via USB, make sure ADB server has started (i.e. run `sudo adb start-server`)
 * Get IP address of Loomo: `adb shell netcfg`
-
-
-There are a couple hard-coded parameters but you should feel free to change:
-- `ROS_MASTER_URI`: set to `192.168.42.134` - it's possible yours will be different
-- `tf_prefix`: set to `LO01` (short for Loomo 01, in case there are multiple loomos communicating with the same ROS master)
