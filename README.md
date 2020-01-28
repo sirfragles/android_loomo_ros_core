@@ -1,5 +1,6 @@
 # Android Loomo ROS Core
-##### Michael Everett & Jonathan P. How - Aerospace Controls Laboratory, MIT - This work is supported by Ford Motor Company
+##### Michael Everett, Susan Ni, & Jonathan P. How - Aerospace Controls Laboratory, MIT
+##### This work is supported by Ford Motor Company
 
 This is early research code (Android app) that enables Loomo-to-Ubuntu PC connection through USB, with message passing in ROS.
 
