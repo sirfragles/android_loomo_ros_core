@@ -110,6 +110,24 @@ The robot base should spin/drive forward/backward if you send these commands at 
 
 If all of that worked, you're able to send/receive data from your Loomo using ROS! And there is little latency by using the USB connection, as compared to communicating through WiFi.
 
+### A More Streamlined Alternative to USB Tethering: Using a Router ###
+Networking the Loomo, a Jetson, and an external PC is very cumbersome via USB tethering; you have to tether to obtain an IP address in order to start a ROS master and then bridge the network for an external PC to observe the ROS activity. However, this can be streamlined by using a portable USB-powered [router](https://www.amazon.com/dp/B07GBXMBQF/ref=psdc_300189_t3_B071CN3C12) with gigabit ethernet ports. This will effectively replace steps 4 & 5 of "After Installing Android App onto Loomo".
+#### New Architecture: ####
+* Jetson (always) connected to router via ethernet cable.
+* Loomo (always) connected to router via ethernet cable. Use an [OTG dongle](https://www.amazon.com/AmazonBasics-1000-Gigabit-Ethernet-Adapter/dp/B00M77HMU0/ref=sr_1_3?crid=1OQIL08TYFWXB&dchild=1&keywords=amazon+basics+ethernet+to+usb&qid=1589146438&s=electronics&sprefix=amazon+basics+ethe%2Celectronics%2C177&sr=1-3) + USB-A to USB-C dongle to connect ethernet cable to USB-C port of Loomo.
+  * Have to make sure OTG dongle is compatible with Android, or else it won't work.
+* If you want an external PC to monitor ROS activity, connect to router via WiFi.
+
+All three devices should now be networked together and they should be able to ping one another. The router can also be configured to assign each device a static IP based on its MAC address, so the `ROS_IP` of each device never has to be changed. This is also handy if the Network Manager of the Jetson has to be disabled for whatever reason because USB tethering previously depended on the Network Manager to set a static IP.
+
+#### Specifics for Router on ACL's Loomo ####
+* GL-AR750s Slate Router:
+  * LAN IP: 192.168.42.1 (type in LAN IP in a browser of a device connected to the router to configure router)
+    * User: root
+    * Pass: loomonet
+  * WIFI SSID: GL-AR750S-ado*
+    * Pass: loomonet
+
 ### General Loomo Tips/Troubleshooting ###
 * To quit an application, tab the side of the head of the Loomo.
 * If Ubuntu PC does not detect Loomo when plugged in via USB, make sure ADB server has started (i.e. run `sudo adb start-server`)
