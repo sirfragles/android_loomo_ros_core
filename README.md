@@ -5,8 +5,7 @@
 This is research code (Android app) that enables a Loomo-to-Ubuntu-PC hard-wire connection with message passing in ROS.
 The intended architecture is to send Loomo sensor data to an on-board computer (Jetson) for heavy processing/planning, then send speed commands from the Jetson to the Loomo, all through ROS, with the ROS master running on the Jetson.
 
-If you want to use our Android app as is, run `abd install android_loomo_ros.apk` (see `v1.0` release) from a PC to install the app on the Loomo.
-You can then skip down to the "After Installing Android App onto Loomo" part of this readme.
+If you want to use our Android app as is, run `abd install android_loomo_ros.apk` (see `v1.0` release) from a PC to install the app on the Loomo. You still have to do steps 5 & 6 of "Starting from scratch", but then you can then skip down to the "After Installing Android App onto Loomo" part of this readme.
 
 ### Starting from scratch ###
 
